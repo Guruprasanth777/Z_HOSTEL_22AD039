@@ -1,0 +1,51 @@
+unmanaged implementation in class zbp_i_hostel_22ad039 unique;
+strict ( 2 );
+
+define behavior for ZI_HOSTEL_22AD039 alias Hostel
+lock master
+authorization master ( instance )
+{
+  create;
+  update;
+  delete;
+  association _Rooms { create; }
+
+  action OptimizeAllocation result [1] $self;
+
+  field ( readonly : update ) AllocId;
+  field ( readonly ) CreatedAt, CreatedBy, LastChangedAt, LastChangedBy;
+
+  mapping for zthostel_22ad039
+  {
+    AllocId = alloc_id;
+    StudentId = student_id;
+    StudentName = student_name;
+    Preference = preference;
+    Status = status;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+  }
+}
+
+define behavior for ZI_ROOM_22AD039 alias Room
+lock dependent by _Hostel
+authorization dependent by _Hostel
+{
+  update;
+  delete;
+  field ( readonly ) AllocId;
+  field ( readonly : update ) RoomUuid;
+  association _Hostel;
+
+  mapping for ztroom_22ad039
+  {
+    AllocId = alloc_id;
+    RoomUuid = room_uuid;
+    RoomNumber = room_number;
+    BedNumber = bed_number;
+    AllocationDate = allocation_date;
+    Remarks = remarks;
+  }
+}

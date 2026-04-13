@@ -1,0 +1,59 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Hostel Request', 
+                typeNamePlural: 'Hostel Requests', 
+                title: { type: #STANDARD, value: 'StudentName' } }
+}
+annotate view ZC_HOSTEL_22AD039 with
+{
+  @UI.facet: [ 
+    { id: 'Hostel', 
+      purpose: #STANDARD, 
+      type: #IDENTIFICATION_REFERENCE, 
+      label: 'Request Details', 
+      position: 10 },
+    { id: 'Rooms', 
+      purpose: #STANDARD, 
+      type: #LINEITEM_REFERENCE, 
+      label: 'Allocated Rooms', 
+      position: 20, 
+      targetElement: '_Rooms' } 
+  ]
+
+  @UI.hidden: true
+  AllocId;
+
+  @UI.hidden: true
+  CreatedBy;
+
+  @UI.hidden: true
+  CreatedAt;
+
+  @UI.hidden: true
+  LastChangedBy;
+
+  @UI.hidden: true
+  LastChangedAt;
+
+  @EndUserText.label: 'Student ID'
+  @UI: { lineItem: [ { position: 10 } ], 
+         identification: [ { position: 10 } ] }
+  StudentId;
+
+  @EndUserText.label: 'Student Name'
+  @UI: { lineItem: [ { position: 20 } ], 
+         identification: [ { position: 20 } ] }
+  StudentName;
+
+  @EndUserText.label: 'Room Preference'
+  @UI: { lineItem: [ { position: 30 } ], 
+         identification: [ { position: 30 } ] }
+  Preference;
+
+  @EndUserText.label: 'Allocation Status'
+  @UI: { lineItem: [ { position: 40 }, 
+                     { type: #FOR_ACTION, dataAction: 'OptimizeAllocation', label: 'Run Optimization' } ], 
+         identification: [ { position: 40 }, 
+                           { type: #FOR_ACTION, dataAction: 'OptimizeAllocation', label: 'Run Optimization' } ] }
+  Status;
+}

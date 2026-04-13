@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Def for Hostel Allocation'
+define service ZUI_HOSTEL_22AD039 {
+  expose ZC_HOSTEL_22AD039 as Hostel;
+  expose ZC_ROOM_22AD039   as Room;
+}

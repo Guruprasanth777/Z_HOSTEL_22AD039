@@ -1,0 +1,21 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_HOSTEL_22AD039 alias Hostel
+{
+  use create;
+  use update;
+  use delete;
+
+  use action OptimizeAllocation;
+
+  use association _Rooms { create; }
+}
+
+define behavior for ZC_ROOM_22AD039 alias Room
+{
+  use update;
+  use delete;
+
+  use association _Hostel;
+}
